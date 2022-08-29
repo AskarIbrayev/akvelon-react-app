@@ -10,8 +10,11 @@ The code is
 ## Used Technologies: 
 
 TypeScript
+
 React-Router v6
+
 Redux
+
 Design libraries/Frameworks used: React-bootstrap, bootstrap
 
 ## Available Scripts
