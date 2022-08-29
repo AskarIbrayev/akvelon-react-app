@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# Client side interface for the  API Reqres
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was developed with [Create React App]
+
+The code is 
+ - well-structured
+ - easy to read
+ - contains the necessary comments
+
+## Used Technologies: 
+
+TypeScript
+React-Router v6
+Redux
+Design libraries/Frameworks used: React-bootstrap, bootstrap
 
 ## Available Scripts
 
@@ -29,18 +41,26 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Functionality:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Website is not available without authorization, authorization window shown for all client urls
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+User can register, with the ability to open this route by url; after successful registration redirects to the authorization page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+All pages except for registration are available to an authorized client
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+After authorization, the client sees the main page with a list of users
 
-## Learn More
+Client side routing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Pages:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Authorization: With an authorization form and the ability to go to registration
+
+Registration page: With registration form
+
+Home page: header with logout button and view data of the current authorized user, a list of users in the form of cards
+
+User page: header as on the main page, viewing the data of a particular user in the form of a table.
+
+Not Found page 404: header and page text 'this page does not exist'.
