@@ -3,6 +3,10 @@ import Navigation from "../components/Navigation"
 import { useParams } from "react-router-dom"
 import { userAPI } from "../services/UserServices"
 
+// this page is intended to render individual users with detailed information 
+// when you click on the card of the user from the home page
+
+// it uses the useParam hook to get the id of the user from the url and send the request using them param id
 
 export default function UserPage () {
     let params = useParams()

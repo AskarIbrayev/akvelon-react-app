@@ -91,7 +91,7 @@ export default function Signup() {
             <Container>
                 <p className="text-muted mt-5">NOTE: this API does not allow creating new users therefore 
                 you can only select from existing users. Some of them: 
-                "michael.lawson@reqres.in", "lindsay.ferguson@reqres.in", "tobias.funke@reqres.in", "byron.fields@reqres.in"
+                "eve.holt@reqres.in", "george.bluth@reqres.in", "janet.weaver@reqres.in", "emma.wong@reqres.in"
                 </p>
             </Container>
         </div>
