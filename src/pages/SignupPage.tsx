@@ -103,18 +103,17 @@ export default function Signup() {
                     <div className="mt-4 text-center">
                         {isLoading && <Spinner className="text-center" animation="border" />}
                         <p className="fs-6">
-                            If you already have an account please 
-                            <Link to='/auth'>login</Link>
+                            If you already have an account please <Link to='/auth'>login</Link>
                         </p>
                     </div>
                 </Form>
             </Container>
-            <Container>
+            {/* <Container>
                 <p className="text-muted mt-5">NOTE: this API does not allow creating new users therefore 
                 you can only select from existing users. Some of them: 
                 "eve.holt@reqres.in", "george.bluth@reqres.in", "janet.weaver@reqres.in", "emma.wong@reqres.in"
                 </p>
-            </Container>
+            </Container> */}
         </div>
     )
 }

@@ -89,8 +89,7 @@ export default function Login() {
                         />
                     </Form.Group>
                     {errorMessage && <Alert variant={'danger'} className="py-1">{errorMessage ? errorMessage : ''}</Alert>}
-                    {
-                        error ? 
+                    {error ? 
                         <>
                             <Alert variant={'danger'} className="py-1">Something went wrong. Details:<br/> {JSON.stringify(error)}</Alert>
                             <Alert variant={'info'} className="py-1">Try for example" <strong>eve.holt@reqres.in</strong> " and random password</Alert>
