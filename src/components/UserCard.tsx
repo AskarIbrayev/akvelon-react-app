@@ -9,15 +9,14 @@ interface UserCardProps {
 export default function UserCard({user}: UserCardProps) {
     return (
         <div className="col-lg-2 col-sm-3 p-2">
-                <Link to={`/users/${user.id}`}>
-            <Card >
-                    <Card.Img src={user.avatar}/>
-                    <Card.Body>
-                        <Card.Title>{user.first_name} {user.last_name}</Card.Title>
-                    </Card.Body>
-            </Card>
-                </Link>
-
+            <Link to={`/users/${user.id}`}>
+                <Card >
+                        <Card.Img src={user.avatar}/>
+                        <Card.Body>
+                            <Card.Title>{user.first_name} {user.last_name}</Card.Title>
+                        </Card.Body>
+                </Card>
+            </Link>
         </div>
     )
 }

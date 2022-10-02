@@ -1,4 +1,10 @@
 // some type interfaces used in the application
+export interface IRawData {
+    page: number
+    total_pages: number
+    data: IUser[]
+    
+}
 
 export interface IUser {
     id: number,

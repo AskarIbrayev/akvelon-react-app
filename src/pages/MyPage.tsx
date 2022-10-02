@@ -7,10 +7,12 @@ import { useAppSelector } from "../hooks/redux"
 export default function MyPage () {
     // get all users and find the user using email from the userEmail state that was registered when logging in
     // and then render data to the mypage
-    const userEmail = useAppSelector(state => state.userEmailReducer.value)
-    const {data: users, error, isLoading} = userAPI.useFetchAllUsersQuery('')
-    const user = users?.find((user) => user.email === userEmail)
     
+    const userEmail = useAppSelector(state => state.userEmailReducer.value)
+    const {data: users, error, isLoading} = userAPI.useFetchAllUsersQuery(1)
+    const users2 = userAPI.useFetchAllUsersQuery(2).data
+    const allUsers = users && users2 && [...users, ...users2]
+    const user = allUsers?.find((user) => user.email === userEmail)
     return (
         <>
             <Navigation />
