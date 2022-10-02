@@ -16,10 +16,18 @@ export default function Login() {
 
     const [loginUser, {error, isLoading}] = userAPI.useLoginUserMutation()
     
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [errorMessage, setErrorMessage] = useState<string>('')
     
     const handleLogin = () => {
+        setErrorMessage('')
+        if (!validateEmail(email) || !validatePassword(password)) {
+            if (!validateEmail(email)) setErrorMessage('Invalid email format ')
+            if (!validatePassword(password)) setErrorMessage(prev => prev + '| Invalid password format')
+            return
+        }
+        
         loginUser( {email, password})
         .unwrap()
         // if login credentials are successful it first changes the isAuth state to true 
@@ -38,6 +46,15 @@ export default function Login() {
                 setEmail('')
                 setPassword('')
             })
+    }
+    const validateEmail = (email: string) => {
+        const emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if (email.match(emailformat)) return true
+        return false
+    }
+    const validatePassword = (password: string) => {
+        if (password.length < 4) return false
+        return true
     }
     return (
         <>
@@ -71,17 +88,24 @@ export default function Login() {
                             placeholder="password" 
                         />
                     </Form.Group>
+                    {errorMessage && <Alert variant={'danger'} className="py-1">{errorMessage ? errorMessage : ''}</Alert>}
                     {
                         error ? 
                         <>
-                            <Alert variant={'danger'}>Something went wrong. Details:<br/> {JSON.stringify(error)}</Alert>
-                            <Alert variant={'info'}>Try for example" <strong>eve.holt@reqres.in</strong> " and random password</Alert>
+                            <Alert variant={'danger'} className="py-1">Something went wrong. Details:<br/> {JSON.stringify(error)}</Alert>
+                            <Alert variant={'info'} className="py-1">Try for example" <strong>eve.holt@reqres.in</strong> " and random password</Alert>
                         </>
                         : 
                         ''
                     }
                     <div className="mt-3 text-center">
-                        <Button onClick={handleLogin} variant="secondary">Login</Button>
+                        <Button 
+                            disabled={(email && password) ? false : true} 
+                            onClick={handleLogin} 
+                            variant="secondary"
+                        >
+                            Login
+                        </Button>
                     </div>
                     
                     <div className="mt-3 text-center">
@@ -90,12 +114,12 @@ export default function Login() {
                     </div>
                 </Form>
             </Container>
-            <Container>
+            {/* <Container>
                 <p className="text-muted mt-5">NOTE: this API does not allow creating new users therefore 
                     you can only select from existing users. Some of them: 
                     "eve.holt@reqres.in", "george.bluth@reqres.in", "janet.weaver@reqres.in", "emma.wong@reqres.in"
                 </p>
-            </Container>
+            </Container> */}
         </>
     )
 }

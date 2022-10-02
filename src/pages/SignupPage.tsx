@@ -13,7 +13,16 @@ export default function Signup() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState<string>('')
+
     const handleRegister = () => {
+        setErrorMessage('')
+        if (!validateEmail(email) || !validatePassword(password)) {
+            if (!validateEmail(email)) setErrorMessage('Invalid email format ')
+            if (!validatePassword(password)) setErrorMessage(prev => prev + '| Invalid password format')
+            return
+        }
+
         createUser( {email, password})
         .unwrap()
         // if succesful it will redirect to ligin page
@@ -27,6 +36,16 @@ export default function Signup() {
                 setEmail('')
                 setPassword('')
             })
+    }
+
+    const validateEmail = (email: string) => {
+        const emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if (email.match(emailformat)) return true
+        return false
+    }
+    const validatePassword = (password: string) => {
+        if (password.length < 4) return false
+        return true
     }
 
     return (
@@ -61,8 +80,9 @@ export default function Signup() {
                             placeholder="password" 
                         />
                     </Form.Group>
-                    {
-                        error ? 
+                    {errorMessage && <Alert variant={'danger'} className="py-1">{errorMessage ? errorMessage : ''}</Alert>}
+
+                    {error ? 
                         <>
                             <Alert variant={'danger'}>Something went wrong. Details:<br/> {JSON.stringify(error)}</Alert>
                             <Alert variant={'info'}>Try for example" <strong>eve.holt@reqres.in</strong> " and random password</Alert>
@@ -71,7 +91,8 @@ export default function Signup() {
                     }
 
                     <div className="mt-3 text-center">
-                        <Button 
+                        <Button
+                            disabled={(email && password) ? false : true} 
                             onClick={handleRegister} 
                             variant="secondary"
                         >
